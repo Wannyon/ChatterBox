@@ -1,11 +1,11 @@
 import React from 'react';
 import MessageForm from './MessageForm';
 
-const ChatRoom = ({ messages }) => {
+const ChatRoom = ({ roomname, messages, RefreshMessage }) => {
     return (
         <div className="chat-room">
-            <h2>{messages[0]?.roomname}</h2>
-            <MessageForm roomname={messages[0]?.roomname} />
+            <h2>{roomname}</h2>
+            <MessageForm roomname={roomname} RefreshMessage={RefreshMessage} />
 
             <div className="messages">
                 {messages.map(msg => (

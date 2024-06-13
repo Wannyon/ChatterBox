@@ -1,7 +1,6 @@
 import React from "react";
 
-const ChatList = ({ messages, RoomClick }) => {
-    const rooms = [...new Set(messages.map(message => message.roomname))];
+const ChatList = ({ rooms, RoomClick }) => {
     return (
       <div className="chat-list">
           <h2>Chat Rooms</h2>
