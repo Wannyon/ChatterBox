@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 const MessageForm = ({ roomname, RefreshMessage }) => {
     const [text, setText] = useState('');
@@ -52,5 +53,21 @@ const MessageForm = ({ roomname, RefreshMessage }) => {
         </form>
     );
 };
+
+const Form = styled.form`
+  display: flex;
+`;
+
+const Input = styled.input`
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+`;
+
+const Button = styled.button`
+  padding: 10px;
+  font-size: 16px;
+`;
 
 export default MessageForm;

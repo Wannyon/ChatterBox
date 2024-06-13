@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import styled from "styled-components";
 import ChatList from "./components/ChatList.jsx";
 import ChatRoom from "./components/ChatRoom.jsx";
 import CreateRoomForm from "./components/CreateRoomForm.jsx";
@@ -43,7 +44,7 @@ const App = () => {
   };
 
   return (
-      <div className="app">
+      <AppContainer className="app">
         <button className="return-btn" onClick={returnClick}>return</button>
         {!selectedRoom && <CreateRoomForm onCreateRoom={handleCreateRoom}/>}
         {!selectedRoom && <ChatList rooms={rooms} RoomClick={handleRoomClick}/>}
@@ -54,8 +55,15 @@ const App = () => {
                 RefreshMessage={getMessages}
             />
         }
-      </div>
+      </AppContainer>
   );
-}
+};
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+`;
 
 export default App;
