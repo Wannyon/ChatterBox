@@ -9,6 +9,7 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState();
+  const [roomSearch, setRoomSearch] = useState("");
 
   const getMessages = async () => {
     try {
@@ -43,11 +44,23 @@ const App = () => {
     setSelectedRoom(null);
   };
 
+  const filteredRooms = rooms.filter(room =>
+      room.toLowerCase().includes(roomSearch.toLowerCase())
+  );
+
   return (
       <AppContainer className="app">
         <button className="return-btn" onClick={returnClick}>return</button>
         {!selectedRoom && <CreateRoomForm onCreateRoom={handleCreateRoom}/>}
-        {!selectedRoom && <ChatList rooms={rooms} RoomClick={handleRoomClick}/>}
+        {!selectedRoom &&
+            <SearchBox
+                type="text"
+                value={roomSearch}
+                onChange={(e) => setRoomSearch(e.target.value)}
+                placeholder="Search (ChatRoom)"
+            />
+        }
+        {!selectedRoom && <ChatList rooms={filteredRooms} RoomClick={handleRoomClick}/>}
         {selectedRoom &&
             <ChatRoom
                 roomname={selectedRoom}
@@ -64,6 +77,12 @@ const AppContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+`;
+
+const SearchBox = styled.input`
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
 `;
 
 export default App;

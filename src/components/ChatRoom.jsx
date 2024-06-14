@@ -1,24 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import MessageForm from './MessageForm';
 
 const ChatRoom = ({ roomname, messages, RefreshMessage }) => {
+    const [messageSearch, setMessageSearch] = useState("");
+
+    const filteredMessages = messages.filter(msg =>
+        msg.text.toLowerCase().includes(messageSearch.toLowerCase()) ||
+        msg.username.toLowerCase().includes(messageSearch.toLowerCase())
+    );
+
     return (
         <ChatRoomContainer className="chat-room">
             <h2>{roomname}</h2>
-            <MessageForm roomname={roomname} RefreshMessage={RefreshMessage} />
+            <SearchBox
+                type="text"
+                value={messageSearch}
+                onChange={(e) => setMessageSearch(e.target.value)}
+                placeholder="Search (User & Message)"
+            />
 
             <MessagesContainer className="messages">
-                {messages.map(msg => (
+                {filteredMessages.map(msg => (
                     <Message key={msg.id} className="message">
+                        <strong>{msg.username}</strong>
                         <p>
-                            <strong>{msg.username}</strong>: {msg.text}
+                            {msg.text}
                             <span>{new Date(msg.date).toLocaleString()}</span>
                         </p>
 
                     </Message>
                 ))}
             </MessagesContainer>
+            <MessageForm roomname={roomname} RefreshMessage={RefreshMessage} />
         </ChatRoomContainer>
     );
 };
@@ -29,6 +43,7 @@ const ChatRoomContainer = styled.div`
 `;
 
 const MessagesContainer = styled.div`
+  min-height: 300px;
   border: 1px solid #ccc;
   padding: 10px;
   max-height: 300px;
@@ -48,6 +63,12 @@ const Message = styled.div`
   span {
     font-size: x-small;
   }
+`;
+
+const SearchBox = styled.input`
+  font-size: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
 `;
 
 export default ChatRoom;
