@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FriendList = ({ friends, onRemoveFriend }) => {
+const FriendList = ({ className, friends, onRemoveFriend }) => {
     return (
-        <FriendListContainer>
+        <FriendListContainer className={className}>
             <FriendListHeader>친구 목록</FriendListHeader>
             <FriendListItems>
                 {friends.map(friend => (
