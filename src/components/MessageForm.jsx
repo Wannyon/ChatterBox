@@ -36,14 +36,14 @@ const MessageForm = ({ roomname, RefreshMessage }) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Input
+            <UsernameInput
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="USERNAME"
             />
 
-            <Input
+            <MessageInput
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
@@ -60,17 +60,26 @@ const Form = styled.form`
   margin-bottom: 20px;
 `;
 
-const Input = styled.input`
-  flex: 1;
+const UsernameInput = styled.input`
   padding: 10px;
   font-size: medium;
-  margin-right: 15px;
+  margin-right: 10px;
+  width: 100px;
+`;
+
+const MessageInput = styled.input`
+  padding: 10px;
+  font-size: medium;
+  margin-right: 10px;
+  width: 150px;
 `;
 
 const Button = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: large;
+  width: 80px;
   background-color: #424260;
 
   &:hover {

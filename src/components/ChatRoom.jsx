@@ -49,17 +49,21 @@ const MessagesContainer = styled.div`
   max-height: 300px;
   margin-bottom: 10px;
   overflow-y: auto;
+  background-color: #7eb6b6;
 `;
 
 const Message = styled.div`
   margin-bottom: 10px;
   font-size: medium;
-  
+  background-color: #eaece9;
+  border-radius: 10px;
+  padding: 1px 10px;
+
   strong {
     font-size: large;
     color: #333;
   }
-  
+
   span {
     font-size: x-small;
   }
